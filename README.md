@@ -1,1 +1,1 @@
-This repository contains tasks fronm alx backend specialization
+This repository contains tasks from alx backend specialization

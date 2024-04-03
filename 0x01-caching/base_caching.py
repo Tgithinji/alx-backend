@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ BaseCaching module
 """
 
@@ -30,3 +30,4 @@ class BaseCaching():
         """ Get an item by key
         """
         raise NotImplementedError("get must be implemented in your cache class")
+    

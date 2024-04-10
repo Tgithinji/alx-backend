@@ -2,8 +2,9 @@
 """Basic flask app
 """
 import pytz
+from datetime import datetime
 from flask import Flask, render_template, request, g
-from flask_babel import Babel
+from flask_babel import Babel, format_datetime
 
 
 app = Flask(__name__)
@@ -18,7 +19,7 @@ class Config:
 
 
 app.config.from_object(Config)
-babel = Babel(app)
+# babel = Babel(app)
 
 
 users = {
@@ -47,7 +48,7 @@ def before_request():
     g.user = get_user()
 
 
-@babel.localeselector
+# @babel.localeselector
 def get_locale():
     """get the locale
     """
@@ -59,7 +60,7 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-@babel.timezoneselector
+# @babel.timezoneselector
 def get_timezone():
     """return timezone
     """
@@ -72,12 +73,13 @@ def get_timezone():
         pass
     return 'UTC'
 
-
+babel = Babel(app, locale_selector=get_locale, timezone_selector=get_timezone)
 @app.route('/')
 def index():
     """render index page
     """
-    return render_template('5-index.html')
+    time = format_datetime(datetime.utcnow())
+    return render_template('7-index.html', current_time=time)
 
 
 if __name__ == '__main__':

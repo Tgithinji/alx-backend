@@ -19,7 +19,7 @@ class Config:
 
 
 app.config.from_object(Config)
-# babel = Babel(app)
+babel = Babel(app)
 
 
 users = {
@@ -48,7 +48,7 @@ def before_request():
     g.user = get_user()
 
 
-# @babel.localeselector
+@babel.localeselector
 def get_locale():
     """get the locale
     """
@@ -60,7 +60,7 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-# @babel.timezoneselector
+@babel.timezoneselector
 def get_timezone():
     """return timezone
     """
@@ -73,7 +73,7 @@ def get_timezone():
         pass
     return 'UTC'
 
-babel = Babel(app, locale_selector=get_locale, timezone_selector=get_timezone)
+
 @app.route('/')
 def index():
     """render index page

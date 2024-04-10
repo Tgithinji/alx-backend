@@ -20,7 +20,7 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
-@babel_localeselector
+@babel.localeselector
 def get_locale():
     """get the locale
     """
